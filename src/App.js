@@ -18,6 +18,23 @@ class App extends Component {
     filter: '',
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem(
+        'contacts',
+        JSON.stringify([...this.state.contacts]),
+      );
+    }
+  }
+
+  componentDidMount() {
+    const items = JSON.parse(localStorage.getItem('contacts'));
+    console.log(items);
+    if (items) {
+      this.setState({ contacts: items });
+    }
+  }
+
   changeFilter = e => {
     this.setState({ filter: e.currentTarget.value });
   };
@@ -65,18 +82,6 @@ class App extends Component {
       };
     });
   };
-
-  componentDidUpdate() {
-    localStorage.setItem('contacts', JSON.stringify([...this.state.contacts]));
-  }
-
-  componentDidMount() {
-    const items = JSON.parse(localStorage.getItem('contacts'));
-    console.log(items);
-    if (items) {
-      this.setState({ contacts: items });
-    }
-  }
 
   render() {
     return (
