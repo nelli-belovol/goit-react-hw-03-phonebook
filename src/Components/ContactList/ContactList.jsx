@@ -13,8 +13,7 @@ export default function ContactList({ title, contacts, onClick }) {
               {contact.name}: {contact.number}
               <button
                 className={s.contacts__button}
-                data-id={contact.id}
-                onClick={onClick}
+                onClick={() => onClick(contact.id)}
                 type="button"
               >
                 Delete

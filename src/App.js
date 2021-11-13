@@ -69,9 +69,9 @@ class App extends Component {
     }));
   };
 
-  handleDelContact = e => {
+  handleDelContact = id => {
     const idxContact = this.state.contacts.findIndex(contact => {
-      return contact.id === e.target.dataset.id;
+      return contact.id === id;
     });
 
     this.setState(prevState => {
